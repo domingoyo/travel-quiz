@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>你是哪種旅人？心理測驗</title>
+  <style>
+    body { font-family: sans-serif; padding: 2em; max-width: 900px; margin: auto; background: #fff8f0; }
+    h1 { text-align: center; }
+    .question { margin-bottom: 2.5em; }
+    .question h2 { font-size: 1.3em; margin-bottom: 1em; }
+    .options { display: flex; flex-wrap: wrap; gap: 1em; }
+    .card {
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 1em;
+      width: 45%;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.3s;
+      background: white;
+    }
+    .card:hover {
+      transform: scale(1.03);
+      border-color: #ff9900;
+    }
+    .card input[type="radio"] {
+      display: none;
+    }
+    .card.selected {
+      border-color: #ff6600;
+      background: #fff2e6;
+    }
+    #result { margin-top: 2em; padding: 1em; border: 2px dashed #ccc; background: #f0f0f0; display: none; }
+    button { padding: 0.6em 1em; font-size: 1em; margin-top: 1em; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>🎒 你是哪種旅人？</h1>
+  <form id="quiz">
+    <div class="question" data-question="q1">
+      <h2>Q1. 出國旅遊，你最重視什麼？</h2>
+      <div class="options">
+        <label class="card"><input type="radio" name="q1" value="A"> 舒服好拍、放鬆又有質感</label>
+        <label class="card"><input type="radio" name="q1" value="B"> 玩好玩滿、CP值高才行</label>
+        <label class="card"><input type="radio" name="q1" value="C"> 活動內容豐富、吃喝玩樂都要有</label>
+        <label class="card"><input type="radio" name="q1" value="D"> 安排不要太趕，可以好好感受文化</label>
+      </div>
+    </div>
+    <div class="question" data-question="q2">
+      <h2>Q2. 你理想的行程節奏是？</h2>
+      <div class="options">
+        <label class="card"><input type="radio" name="q2" value="A"> 悠閒＋享受人生</label>
+        <label class="card"><input type="radio" name="q2" value="B"> 活動很多，一刻也不能閒著</label>
+        <label class="card"><input type="radio" name="q2" value="C"> 一天走2~3個點，該拍照也要玩得夠</label>
+        <label class="card"><input type="radio" name="q2" value="D"> 比較在意深度，不想只是拍完就走</label>
+      </div>
+    </div>
+    <div class="question" data-question="q3">
+      <h2>Q3. 你比較能接受哪種場景？</h2>
+      <div class="options">
+        <label class="card"><input type="radio" name="q3" value="A"> 無邊泳池＋獨棟villa</label>
+        <label class="card"><input type="radio" name="q3" value="B"> 跳海＋SPA＋沙灘party</label>
+        <label class="card"><input type="radio" name="q3" value="C"> 拍燈籠古鎮＋走空中纜車</label>
+        <label class="card"><input type="radio" name="q3" value="D"> 餵大象＋市集吃在地小吃</label>
+      </div>
+    </div>
+    <div class="question" data-question="q4">
+      <h2>Q4. 你想一起去的人是？</h2>
+      <div class="options">
+        <label class="card"><input type="radio" name="q4" value="A"> 幾個好友or情侶，氣氛最重要</label>
+        <label class="card"><input type="radio" name="q4" value="B"> 同事or朋友一大團，玩起來才過癮</label>
+        <label class="card"><input type="radio" name="q4" value="C"> 不怕人多，就是要大家一起玩遍景點</label>
+        <label class="card"><input type="radio" name="q4" value="D"> 想要一群懂生活的人，一起體驗文化</label>
+      </div>
+    </div>
+    <button type="button" onclick="showResult()">查看結果</button>
+  </form>
+  <div id="result"></div>
+
+  <script>
+    document.querySelectorAll('.card input[type="radio"]').forEach(input => {
+      input.addEventListener('change', function() {
+        const questionDiv = this.closest('.question');
+        questionDiv.querySelectorAll('.card').forEach(c => c.classList.remove('selected'));
+        this.closest('.card').classList.add('selected');
+      });
+    });
+
+    function showResult() {
+      const answers = [
+        document.querySelector('input[name="q1"]:checked'),
+        document.querySelector('input[name="q2"]:checked'),
+        document.querySelector('input[name="q3"]:checked'),
+        document.querySelector('input[name="q4"]:checked')
+      ];
+
+      if (answers.some(ans => !ans)) {
+        alert("請完整作答所有問題喔！");
+        return;
+      }
+
+      const counts = { A: 0, B: 0, C: 0, D: 0 };
+      answers.forEach(ans => counts[ans.value]++);
+
+      let max = 'A';
+      for (let key in counts) {
+        if (counts[key] > counts[max]) max = key;
+      }
+
+      const resultText = {
+        A: "你是 Villa系旅人！適合【峇里島小團行程】— 享受高質感住宿與放鬆體驗。",
+        B: "你是 活力派旅人！適合【長灘島全包團】— 沙灘派對、遊艇、水樂園應有盡有。",
+        C: "你是 攻景系旅人！適合【中越雙城團】— 行程多樣、拍照打卡一次滿足。",
+        D: "你是 文化系慢旅行者！適合【清邁迷你團】— 餵大象、手作料理、夜市走跳最適合你。"
+      };
+
+      document.getElementById("result").style.display = "block";
+      document.getElementById("result").innerText = resultText[max];
+    }
+  </script>
+</body>
+</html>
