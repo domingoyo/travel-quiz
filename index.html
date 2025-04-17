@@ -3,25 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>你是哪種旅人？心理測驗</title>
+  <title>你的旅行靈魂選擇</title>
   <style>
     body { font-family: sans-serif; padding: 2em; max-width: 900px; margin: auto; background: #fff8f0; }
-    h1 { text-align: center; }
+    h1 { text-align: center; margin-bottom: 1em; }
     .question { margin-bottom: 2.5em; }
-    .question h2 { font-size: 1.3em; margin-bottom: 1em; }
-    .options { display: flex; flex-wrap: wrap; gap: 1em; }
+    .question h2 { font-size: 1.2em; margin-bottom: 1em; }
+    .options { display: flex; flex-direction: column; gap: 1em; }
     .card {
       border: 2px solid #ccc;
       border-radius: 8px;
       padding: 1em;
-      width: 45%;
       box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
       cursor: pointer;
       transition: transform 0.2s, border-color 0.3s;
       background: white;
     }
     .card:hover {
-      transform: scale(1.03);
+      transform: scale(1.02);
       border-color: #ff9900;
     }
     .card input[type="radio"] {
@@ -32,8 +31,6 @@
       background: #fff2e6;
     }
     button { padding: 0.6em 1em; font-size: 1em; margin-top: 1em; cursor: pointer; }
-
-    /* popup modal */
     #popup {
       display: none;
       position: fixed;
@@ -63,45 +60,45 @@
   </style>
 </head>
 <body>
-  <h1>🎒 你是哪種旅人？</h1>
+  <h1>🎮 你的旅行靈魂選擇</h1>
   <form id="quiz">
     <div class="question" data-question="q1">
-      <h2>Q1. 出國旅遊，你最重視什麼？</h2>
+      <h2>你剛到機場，第一個反應是？</h2>
       <div class="options">
-        <label class="card"><input type="radio" name="q1" value="A"> 舒服好拍、放鬆又有質感</label>
-        <label class="card"><input type="radio" name="q1" value="B"> 玩好玩滿、CP值高才行</label>
-        <label class="card"><input type="radio" name="q1" value="C"> 活動內容豐富、吃喝玩樂都要有</label>
-        <label class="card"><input type="radio" name="q1" value="D"> 安排不要太趕，可以好好感受文化</label>
+        <label class="card"><input type="radio" name="q1" value="A"> 📸 拍一張自己與行李的出發照，打卡最重要！</label>
+        <label class="card"><input type="radio" name="q1" value="B"> 🎉 興奮大喊「Let's go！」準備開玩</label>
+        <label class="card"><input type="radio" name="q1" value="C"> 📍 馬上查附近今天要去哪裡打卡</label>
+        <label class="card"><input type="radio" name="q1" value="D"> 🧘‍♂️ 靜靜觀察機場，感受旅程的開始</label>
       </div>
     </div>
     <div class="question" data-question="q2">
-      <h2>Q2. 你理想的行程節奏是？</h2>
+      <h2>你剛進飯店，有半天空閒時間，會？</h2>
       <div class="options">
-        <label class="card"><input type="radio" name="q2" value="A"> 悠閒＋享受人生</label>
-        <label class="card"><input type="radio" name="q2" value="B"> 活動很多，一刻也不能閒著</label>
-        <label class="card"><input type="radio" name="q2" value="C"> 一天走2~3個點，該拍照也要玩得夠</label>
-        <label class="card"><input type="radio" name="q2" value="D"> 比較在意深度，不想只是拍完就走</label>
+        <label class="card"><input type="radio" name="q2" value="A"> 🏖️ 衝泳池＋下午茶，享受才是王道</label>
+        <label class="card"><input type="radio" name="q2" value="B"> 🔍 找最近能玩水上活動或極限體驗</label>
+        <label class="card"><input type="radio" name="q2" value="C"> 📱 開 IG 看附近網美熱點要去哪裡</label>
+        <label class="card"><input type="radio" name="q2" value="D"> 🚶‍♂️ 漫步老街，享受當地慢節奏</label>
       </div>
     </div>
     <div class="question" data-question="q3">
-      <h2>Q3. 你比較能接受哪種場景？</h2>
+      <h2>你走進當地夜市，你會？</h2>
       <div class="options">
-        <label class="card"><input type="radio" name="q3" value="A"> 無邊泳池＋獨棟villa</label>
-        <label class="card"><input type="radio" name="q3" value="B"> 跳海＋SPA＋沙灘party</label>
-        <label class="card"><input type="radio" name="q3" value="C"> 拍燈籠古鎮＋走空中纜車</label>
-        <label class="card"><input type="radio" name="q3" value="D"> 餵大象＋市集吃在地小吃</label>
+        <label class="card"><input type="radio" name="q3" value="A"> ✨ 拍夢幻燈光照＋美食打卡</label>
+        <label class="card"><input type="radio" name="q3" value="B"> 🎯 衝射飛鏢、玩遊戲、挑戰一條街</label>
+        <label class="card"><input type="radio" name="q3" value="C"> 🍢 小吃＋打卡＋拍樂園通通都要來</label>
+        <label class="card"><input type="radio" name="q3" value="D"> 🍵 找家茶館或安靜角落坐下來感受</label>
       </div>
     </div>
     <div class="question" data-question="q4">
-      <h2>Q4. 你想一起去的人是？</h2>
+      <h2>一天結束，你最滿意的會是？</h2>
       <div class="options">
-        <label class="card"><input type="radio" name="q4" value="A"> 幾個好友or情侶，氣氛最重要</label>
-        <label class="card"><input type="radio" name="q4" value="B"> 同事or朋友一大團，玩起來才過癮</label>
-        <label class="card"><input type="radio" name="q4" value="C"> 不怕人多，就是要大家一起玩遍景點</label>
-        <label class="card"><input type="radio" name="q4" value="D"> 想要一群懂生活的人，一起體驗文化</label>
+        <label class="card"><input type="radio" name="q4" value="A"> 🛏️ 舒適住宿與一堆美照</label>
+        <label class="card"><input type="radio" name="q4" value="B"> 🚀 玩超多、每分每秒都沒停下來</label>
+        <label class="card"><input type="radio" name="q4" value="C"> 📸 景點拍完又玩夠，成就解鎖</label>
+        <label class="card"><input type="radio" name="q4" value="D"> 🧠 體會當地文化，有故事可說</label>
       </div>
     </div>
-    <button type="button" onclick="showResult()">查看結果</button>
+    <button type="button" onclick="showResult()">✨ 查看你的旅人靈魂 ✨</button>
   </form>
 
   <div id="popup">
@@ -142,10 +139,10 @@
       }
 
       const resultText = {
-        A: "你是 Villa系旅人！適合【峇里島小團行程】— 享受高質感住宿與放鬆體驗。",
-        B: "你是 活力派旅人！適合【長灘島全包團】— 沙灘派對、遊艇、水樂園應有盡有。",
-        C: "你是 攻景系旅人！適合【中越雙城團】— 行程多樣、拍照打卡一次滿足。",
-        D: "你是 文化系慢旅行者！適合【清邁迷你團】— 餵大象、手作料理、夜市走跳最適合你。"
+        A: "🌴 你是 Villa感旅人！適合【峇里島小團行程】— 悠閒高質感，專屬打卡時光。",
+        B: "🌊 你是 活力爆玩型旅人！適合【長灘島全包團】— 一秒開玩，從早嗨到晚！",
+        C: "📷 你是 景點打卡達人！適合【中越雙城行程】— 拍照、遊玩、踩點，一樣都不能少。",
+        D: "🍃 你是 沉浸式慢旅行者！適合【清邁迷你團】— 感受、體會、每一刻都值得收藏。"
       };
 
       document.getElementById("popup-result").innerText = resultText[max];
